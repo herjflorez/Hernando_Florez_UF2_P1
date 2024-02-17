@@ -89,7 +89,7 @@ public class DaoImpl {
 	 */
 	public Player getPlayer(String user, String pass) throws SQLException{
 		String query = "SELECT * FROM player where user = '" + user + "' and password = '" + pass + "'";
-		Player player = new Player("a");
+		Player player = null;
 		
 		
 		try(PreparedStatement ps = conexion.prepareStatement(query)) {
@@ -197,7 +197,7 @@ public class DaoImpl {
 	 * @throws SQLException
 	 */
 	public void clearDeck(int playerId) throws SQLException{
-		String query = "DELETE FROM card WHERE id_player = ?";
+		String query = "DELETE FROM card WHERE id = ?";
 		try(PreparedStatement ps = conexion.prepareStatement(query)){
 			ps.setInt(1, playerId);
 			ps.executeUpdate();
@@ -210,7 +210,7 @@ public class DaoImpl {
 	 * @throws SQLException
 	 */
 	public void addVictories(int playerId) throws SQLException{
-		String query = "UPDATE player SET victories = vistories + 1 WHERE id_Player = ?";
+		String query = "UPDATE player SET victories = vistories + 1 WHERE id = ?";
 		try(PreparedStatement ps = conexion.prepareStatement(query)){
 			ps.setInt(1, playerId);
 			ps.executeUpdate();
@@ -223,7 +223,7 @@ public class DaoImpl {
 	 * @throws SQLException
 	 */
 	public void addGames(int playerId) throws SQLException{
-		String query = "UPDATE player SET games = games + 1 WHERE id_Player = ?";
+		String query = "UPDATE player SET games = games + 1 WHERE id = ?";
 		try(PreparedStatement ps = conexion.prepareStatement(query)){
 			ps.setInt(1, playerId);
 			ps.executeUpdate();
