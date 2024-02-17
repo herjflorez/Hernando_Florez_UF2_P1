@@ -197,7 +197,7 @@ public class DaoImpl {
 	 * @throws SQLException
 	 */
 	public void clearDeck(int playerId) throws SQLException{
-		String query = "DELETE FROM card WHERE id = ?";
+		String query = "DELETE FROM card WHERE id_player = ?";
 		try(PreparedStatement ps = conexion.prepareStatement(query)){
 			ps.setInt(1, playerId);
 			ps.executeUpdate();
@@ -210,7 +210,7 @@ public class DaoImpl {
 	 * @throws SQLException
 	 */
 	public void addVictories(int playerId) throws SQLException{
-		String query = "UPDATE player SET victories = vistories + 1 WHERE id = ?";
+		String query = "UPDATE player SET victories = victories + 1 WHERE id = ?";
 		try(PreparedStatement ps = conexion.prepareStatement(query)){
 			ps.setInt(1, playerId);
 			ps.executeUpdate();
